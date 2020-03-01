@@ -1,9 +1,9 @@
 import React from 'react'
 import Paper from '@material-ui/core/Paper'
-const feed = (props) => {
+const feeds = (props) => {
     return (<Paper>
 
     </Paper>)
 }
 
-export default feed;
+export default feeds;
