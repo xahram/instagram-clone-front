@@ -22,7 +22,7 @@ const SignUp = (props) => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        const authData = { name: valUname, email: valEmail, password: valPass };
+        const authData = { username: valUname, email: valEmail, password: valPass };
 
         axios.post('/users', authData).then((res) => {
             console.log(res);
