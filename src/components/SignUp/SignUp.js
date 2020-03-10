@@ -13,7 +13,7 @@ import useTogglerState from '../../hooks/useTogglerState'
 import axios from 'axios';
 import { NavLink } from 'react-router-dom'
 import Spinner from '../UI/Layout/Spinner/Spinner'
-
+import { AuthContext } from '../../hooks/contexts/AuthContext'
 
 
 const SignUp = (props) => {
@@ -22,20 +22,20 @@ const SignUp = (props) => {
     const [valEmail, onChangeEmailHandler] = useInputState('')
     const [valPass, onChangePassHandler] = useInputState('')
     const [valUname, onChangeUnameHandler] = useInputState('')
+    const { state, logIn } = React.useContext(AuthContext)
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
         toggleLoading(true);
         const authData = { username: valUname, email: valEmail, password: valPass };
-        // console.log(loading);
         axios.post('/users', authData).then((res) => {
-            console.log(res);
-            // console.log(loading);
-
+            // console.log(res);
             toggleLoading(false);
-            // console.log(loading);
+            logIn()
         }).catch((err) => {
-            console.log(err)
+            // console.log(err)
+          
+            console.log(state.isAuthenticated)
             toggleLoading(false);
         });
     }

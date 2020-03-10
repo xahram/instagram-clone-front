@@ -1,9 +1,10 @@
-import React from 'react'
-
-const layout = (props) => {
-    return (<React.Fragment>
+import React, { useContext } from 'react'
+import { AuthContext } from '../../../hooks/contexts/AuthContext'
+const Layout = (props) => {
+    const { state } = useContext(AuthContext)
+    const { isAuthenticated } = state
+    const layout = isAuthenticated ? <p>Welcome To Instagram</p> : <React.Fragment>
         <header>
-
         </header>
         <main>
             {props.children}
@@ -12,7 +13,8 @@ const layout = (props) => {
 
         </footer>
     </React.Fragment>
-    )
+
+    return layout;
 }
 
-export default layout
+export default Layout
