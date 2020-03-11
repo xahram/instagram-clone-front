@@ -3,9 +3,9 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/UI/Layout/Layout';
 import Feeds from './components/Feeds/Feeds';
+import Profile from './components/Profile/Profile'
 // import Toolbar from './components/Toolbar/Toolbar'
-import SignUp from './components/SignUp/SignUp';
-import Login from './components/SignUp/Login';
+
 import { Switch, Route, BrowserRouter } from 'react-router-dom'
 function App() {
   return (
@@ -13,13 +13,12 @@ function App() {
 
       <Layout>
         <Switch>
-          <Route path="/" exact component={SignUp} />
-          <Route path="/log-in" component={Login} />
+          <Route to='/' exact component={Profile} />
         </Switch>
       </Layout>
 
     </div>
-  );
-}
-
-export default App;
+      );
+    }
+    
+    export default App;

@@ -1,9 +1,12 @@
 import React, { useContext } from 'react'
+import SignUp from '../../../components/SignUp/SignUp';
+import Login from '../../../components/SignUp/Login';
 import { AuthContext } from '../../../hooks/contexts/AuthContext'
+import { Route } from 'react-router-dom'
 const Layout = (props) => {
     const { state } = useContext(AuthContext)
     const { isAuthenticated } = state
-    const layout = isAuthenticated ? <p>Welcome To Instagram</p> : <React.Fragment>
+    let app = isAuthenticated ? <React.Fragment>
         <header>
         </header>
         <main>
@@ -12,9 +15,10 @@ const Layout = (props) => {
         <footer>
 
         </footer>
-    </React.Fragment>
+    </React.Fragment> : <React.Fragment><Route path="/" exact component={SignUp} />
+            <Route path="/log-in" component={Login} /></React.Fragment>
 
-    return layout;
+    return app;
 }
 
 export default Layout

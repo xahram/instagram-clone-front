@@ -30,11 +30,14 @@ const SignUp = (props) => {
         const authData = { username: valUname, email: valEmail, password: valPass };
         axios.post('/users', authData).then((res) => {
             // console.log(res);
-            toggleLoading(false);
-            logIn()
+            if (res.status === 201) {
+                toggleLoading(false);
+                logIn(res.data.username,res.data.email,res.data._id)
+            }
+
         }).catch((err) => {
             // console.log(err)
-          
+
             console.log(state.isAuthenticated)
             toggleLoading(false);
         });
