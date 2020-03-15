@@ -2,7 +2,8 @@ import React, { useContext } from 'react'
 import SignUp from '../../../components/SignUp/SignUp';
 import Login from '../../../components/SignUp/Login';
 import { AuthContext } from '../../../hooks/contexts/AuthContext'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 const Layout = (props) => {
     const { state } = useContext(AuthContext)
     const { isAuthenticated } = state
@@ -15,8 +16,13 @@ const Layout = (props) => {
         <footer>
 
         </footer>
-    </React.Fragment> : <React.Fragment><Route path="/" exact component={SignUp} />
-            <Route path="/log-in" component={Login} /></React.Fragment>
+    
+    </React.Fragment> : <React.Fragment>
+            <Switch>
+                <Route path="/" exact component={SignUp} />
+                <Route exact path="/log-in" component={Login} />
+            </Switch>
+        </React.Fragment>
 
     return app;
 }

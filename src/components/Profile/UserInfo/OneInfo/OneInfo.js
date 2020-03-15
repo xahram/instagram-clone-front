@@ -11,7 +11,7 @@ const OneInfo = (props) => {
         field={state[val]}
         toggle={toggle}
         setToggle={setToggle} /> : <><ListItem>
-            <ListItemText><strong>{props.val}</strong> : {props.state[props.val]}</ListItemText>
+            <ListItemText style={{ textDecoration: "capitalize" }}><strong>{props.val}</strong> : {props.state[props.val]}</ListItemText>
             <ListItemSecondaryAction>
                 <IconButton onClick={() => {
                     setToggle(!toggle)

@@ -9,6 +9,15 @@ export const AuthProvider = (props) => {
         userId: ''
     })
 
+    const deleteAndLogoutUser = () => {
+        setState({
+            ...state,
+            isAuthenticated: false,
+            username: '',
+            email: '',
+            userId: ''
+        })
+    }
 
     const logIn = (username, email, id) => {
         setState({
@@ -19,7 +28,7 @@ export const AuthProvider = (props) => {
         })
     }
     return (
-        <AuthContext.Provider value={{ state, logIn }}>
+        <AuthContext.Provider value={{ state, logIn ,deleteAndLogoutUser}}>
             {props.children}
         </AuthContext.Provider>
     )
