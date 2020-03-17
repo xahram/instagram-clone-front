@@ -9,6 +9,8 @@ const OneInfo = (props) => {
     const [toggle, setToggle] = React.useState(false)
     return toggle ? <EditForm
         field={state[val]}
+        userId={state.userId}
+        propName={val}
         toggle={toggle}
         setToggle={setToggle} /> : <><ListItem>
             <ListItemText style={{ textDecoration: "capitalize" }}><strong>{props.val}</strong> : {props.state[props.val]}</ListItemText>
