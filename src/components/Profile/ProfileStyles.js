@@ -3,7 +3,8 @@ const styles = (theme) => {
         main: {
             width:"50%",
             margin:"auto",
-            marginTop:"75px"
+            marginTop:"75px",
+         
         }
     }
 }

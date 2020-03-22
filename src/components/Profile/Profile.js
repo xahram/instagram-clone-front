@@ -7,6 +7,7 @@ import UserInfo from './UserInfo/UserInfo'
 import { Button } from 'react-bootstrap'
 import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
+import ProfilePic from './ProfilePic/ProfilePic'
 const Profile = (props) => {
     const { state, deleteAndLogoutUser } = React.useContext(AuthContext);
     const { classes } = props;
@@ -34,6 +35,7 @@ const Profile = (props) => {
 
     const profile = (<React.Fragment>
         <Paper className={classes.main}>
+            <ProfilePic />
             {/* <p>ID : {state.userId}</p> */}
             <List>
                 <UserInfo state={state} />

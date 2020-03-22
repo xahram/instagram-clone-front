@@ -1,0 +1,9 @@
+.profilePicInput{
+    visibility: hidden;
+}
+
+.ProfilePic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
