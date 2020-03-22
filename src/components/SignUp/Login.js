@@ -25,13 +25,13 @@ const Login = (props) => {
         e.preventDefault();
         setLoading(true);
         const authData = { email: valEmail, password: valPass };
-       
-        
+
+
         axios.post('/login', authData).then((res) => {
             console.log(res);
-            logIn(res.data.username,res.data.email,res.data._id)
+            logIn(res.data.username, res.data.email, res.data._id, res.data.avatar)
             setLoading(false)
-         
+
         }).catch((err) => {
             console.log(err.message)
             setLoading(false);

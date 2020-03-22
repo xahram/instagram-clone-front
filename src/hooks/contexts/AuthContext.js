@@ -3,10 +3,11 @@ import React from 'react'
 export const AuthContext = React.createContext();
 export const AuthProvider = (props) => {
     const [state, setState] = React.useState({
-        isAuthenticated: true,
+        isAuthenticated: false,
         username: '',
         email: '',
-        userId: ''
+        userId: '',
+        file:''
     })
 
     const deleteAndLogoutUser = () => {
@@ -15,7 +16,14 @@ export const AuthProvider = (props) => {
             isAuthenticated: false,
             username: '',
             email: '',
-            userId: ''
+            userId: '',
+            file: ''
+        })
+    }
+    const updateProfilePicture = (profilePic) => {
+        setState({
+            ...state,
+            file: profilePic
         })
     }
     const updateUser = (userData) => {
@@ -24,16 +32,17 @@ export const AuthProvider = (props) => {
             ...userData
         })
     }
-    const logIn = (username, email, id) => {
+    const logIn = (username, email, id,profilePic) => {
         setState({
             ...state, isAuthenticated: true,
             username: username,
             email: email,
-            userId: id
+            userId: id,
+            file:profilePic
         })
     }
     return (
-        <AuthContext.Provider value={{ state, logIn, deleteAndLogoutUser, updateUser }}>
+        <AuthContext.Provider value={{ state, logIn, deleteAndLogoutUser, updateUser, updateProfilePicture }}>
             {props.children}
         </AuthContext.Provider>
     )

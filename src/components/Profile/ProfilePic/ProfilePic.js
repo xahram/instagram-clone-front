@@ -17,8 +17,8 @@ const styles = (theme) => {
 
 const ProfilePic = (props) => {
     const { classes } = props
-    const { state } = React.useContext(AuthContext)
-    const [file, setFile] = React.useState()
+    const { state, updateProfilePicture } = React.useContext(AuthContext)
+    // const [file, setFile] = React.useState()
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -26,10 +26,10 @@ const ProfilePic = (props) => {
         formData.append('avatar', e.target.files[0])
 
         // const file = e.target[0].files[0]
-        axios.post(`/uploads/5e5fe24ca754a6dcc06db7b0`, formData)
+        axios.post(`/uploads/${state.userId}`, formData)
             .then((res) => {
                 // console.log(res)
-                setFile(res.data)
+                updateProfilePicture(res.data)
             })
             .catch((err) => {
                 console.log(err)
@@ -44,7 +44,7 @@ const ProfilePic = (props) => {
     }
     //use flex display column and then justify content and hide visibilty of input
     return (<div className={localClasses.ProfilePic}>
-        <Avatar className={classes.Picture} src={`data:image/jpg;base64,${file}`}>
+        <Avatar className={classes.Picture} src={`data:image/jpg;base64,${state.file}`}>
             {/* <Person /> */}
         </Avatar>
         <Typography variant='h6'>
