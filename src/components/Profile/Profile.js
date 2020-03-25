@@ -9,6 +9,7 @@ import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
 import ProfilePic from './ProfilePic/ProfilePic'
 import UploadPosts from './UploadPosts/UploadPosts'
+import Posts from '../../containers/Posts/Posts'
 const Profile = (props) => {
     const { state, deleteAndLogoutUser } = React.useContext(AuthContext);
     const { classes } = props;
@@ -48,6 +49,7 @@ const Profile = (props) => {
             <Button onClick={onLogOutHandler} variant='warning'>Logout</Button>
             <UploadPosts />
         </Paper>
+        <Posts />
     </React.Fragment>
     )
 

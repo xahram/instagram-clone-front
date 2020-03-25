@@ -1,27 +1,25 @@
 import React from 'react'
 import { Avatar, Typography } from '@material-ui/core'
-import Person from '@material-ui/icons/Person'
 import axios from 'axios'
 import { AuthContext } from '../../../hooks/contexts/AuthContext'
-import localClasses from './UploadPosts.module.css'
-import withStyles from '@material-ui/core/styles/withStyles'
-import PublishRoundedIcon from '@material-ui/icons/PublishRounded';
+import classes from './UploadPosts.module.css'
+import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
+
+
 
 
 const UploadPosts = (props) => {
-    const { classes } = props
     const { state } = React.useContext(AuthContext)
     // const [file, setFile] = React.useState()
 
     const submitHandler = (e) => {
         e.preventDefault();
         const formData = new FormData()
-        formData.append('avatar', e.target.files[0])
+        formData.append('post', e.target.files[0])
 
-        // const file = e.target[0].files[0]
-        axios.post(`/uploads/${state.userId}`, formData)
+        axios.post(`/post/upload/${state.userId}`, formData)
             .then((res) => {
-                // console.log(res)
+                console.log(res)
                 // updateProfilePicture(res.data)
             })
             .catch((err) => {
@@ -29,26 +27,23 @@ const UploadPosts = (props) => {
             })
     }
     const anchorOnClickHandler = () => {
-
-        const fileInput = document.getElementsByClassName(localClasses.UploadIcon)[0]
-        // fileInput.addEventListener('click');
+        
+        const fileInput = document.getElementsByClassName(classes.UploadIcon)[0]
         fileInput.click()
+        // fileInput.addEventListener('click');
         // fileInput.dispatchEvent('click');
     }
-    //use flex display column and then justify content and hide visibilty of input
     return (<div >
+        <AddBoxOutlinedIcon onClick={anchorOnClickHandler} />
+            <form id='profilePicForm' onSubmit={submitHandler} enctype="multipart/form-data">
+                <input className={classes.UploadIcon} onChange={
+                    (e) => {
+                        submitHandler(e)
+                    }
+                } name='avatar' type='file' />
 
-
-        <PublishRoundedIcon onClick={anchorOnClickHandler} />
-        <form id='profilePicForm' onSubmit={submitHandler} enctype="multipart/form-data">
-            <input className={localClasses.UploadIcon} onChange={
-                (e) => {
-                    submitHandler(e)
-                }
-            } name='avatar' type='file' />
-
-        </form>
-
+            </form>
+       
     </div>
     )
 }
