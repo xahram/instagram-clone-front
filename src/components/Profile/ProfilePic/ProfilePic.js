@@ -9,8 +9,8 @@ import withStyles from '@material-ui/core/styles/withStyles'
 const styles = (theme) => {
     return {
         Picture: {
-            width: '64px',
-            height: '64px'
+            width: '96px',
+            height: '96px'
         }
     }
 }

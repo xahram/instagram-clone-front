@@ -1,10 +1,12 @@
 const styles = (theme) => {
     return {
         main: {
-            width:"50%",
+            width:"70%",
             margin:"auto",
-            marginTop:"75px",
-         
+            marginTop:"125px",
+            marginBottom:'5.1rem',
+            display:'flex',
+            
         }
     }
 }

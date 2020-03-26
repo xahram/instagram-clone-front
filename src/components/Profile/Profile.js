@@ -1,6 +1,6 @@
 import React from 'react'
 import { AuthContext } from '../../hooks/contexts/AuthContext'
-import { List, Paper } from '@material-ui/core'
+import { Paper } from '@material-ui/core'
 import styles from './ProfileStyles'
 import withStyles from '@material-ui/core/styles/withStyles'
 import UserInfo from './UserInfo/UserInfo'
@@ -10,6 +10,9 @@ import { toast, ToastContainer } from 'react-toastify'
 import ProfilePic from './ProfilePic/ProfilePic'
 import UploadPosts from './UploadPosts/UploadPosts'
 import Posts from '../../containers/Posts/Posts'
+import ProfileInfo from './ProfileInfo/ProfileInfo'
+import EditUser from './EditUser/EditUser'
+import { Route } from 'react-router-dom'
 const Profile = (props) => {
     const { state, deleteAndLogoutUser } = React.useContext(AuthContext);
     const { classes } = props;
@@ -31,24 +34,25 @@ const Profile = (props) => {
     const onLogOutHandler = () => {
 
         deleteAndLogoutUser()
-        props.history.push('/log-in')
+        props.history.push('/')
 
     }
 
     const profile = (<React.Fragment>
         <Paper className={classes.main}>
             <ProfilePic />
+            <ProfileInfo history={props.history} />
             {/* <p>ID : {state.userId}</p> */}
-            <List>
-                <UserInfo state={state} />
-            </List>
-            <Button onClick={() => {
-                onDeleteHandler(state.userId)
-            }}
-                variant='danger'>Delete Profile</Button>{' '}
-            <Button onClick={onLogOutHandler} variant='warning'>Logout</Button>
-            <UploadPosts />
+
+
         </Paper>
+        {/* <Route to='/edit-user' exact component={EditUser} /> */}
+        <Button onClick={() => {
+            onDeleteHandler(state.userId)
+        }}
+            variant='danger'>Delete Profile</Button>{' '}
+        <Button onClick={onLogOutHandler} variant='warning'>Logout</Button>
+        <UploadPosts />
         <Posts />
     </React.Fragment>
     )

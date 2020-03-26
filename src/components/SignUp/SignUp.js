@@ -57,7 +57,7 @@ const SignUp = (props) => {
             <Input value={valPass} onChange={onChangePassHandler} placeholder='password' disableUnderline type='password' id='password' name='password' disableUnderline></Input>
         </FormControl>
         <Typography color='textSecondary' variant="body2">Already have an account?
-        <NavLink to="/log-in" >Click Here</NavLink>
+        <NavLink to="/" >Click Here</NavLink>
         </Typography>
         <Button className={classes.submit}
             variant='contained'

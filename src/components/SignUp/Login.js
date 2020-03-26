@@ -31,6 +31,7 @@ const Login = (props) => {
             console.log(res);
             logIn(res.data.username, res.data.email, res.data._id, res.data.avatar)
             setLoading(false)
+            // props.history.push('/')
 
         }).catch((err) => {
             console.log(err.message)
@@ -49,7 +50,7 @@ const Login = (props) => {
             <Input value={valPass} onChange={onChangePassHandler} placeholder='password' disableUnderline type='password' id='password' name='password' disableUnderline></Input>
         </FormControl>
         <Typography color='textSecondary' variant="body2">Don't have an account?
-    <NavLink to='/'>Click Here</NavLink>
+    <NavLink to='/sign-up'>Click Here</NavLink>
         </Typography>
         <Button className={classes.submit}
             variant='contained'
