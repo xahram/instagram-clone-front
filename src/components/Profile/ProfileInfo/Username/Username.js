@@ -8,7 +8,7 @@ const Username = (props) => {
     }
     return (
         <div className={classes.Username}>
-            <span>{props.username ? props.username:'Username'}</span>
+            <span><strong>{props.username ? props.username:'Username'}</strong></span>
             <Button onClick={onClickHandler} variant='outline-info'>Edit Profile</Button>
         </div>
     )
