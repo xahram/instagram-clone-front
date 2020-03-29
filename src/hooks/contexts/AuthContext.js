@@ -7,7 +7,9 @@ export const AuthProvider = (props) => {
         username: '',
         email: '',
         userId: '',
-        file:''
+        file: '',
+        noOfPosts: '',
+        bio:''
     })
 
     const deleteAndLogoutUser = () => {
@@ -17,7 +19,9 @@ export const AuthProvider = (props) => {
             username: '',
             email: '',
             userId: '',
-            file: ''
+            file: '',
+            noOfPosts: '',
+            bio:''
         })
     }
     const updateProfilePicture = (profilePic) => {
@@ -32,13 +36,16 @@ export const AuthProvider = (props) => {
             ...userData
         })
     }
-    const logIn = (username, email, id,profilePic) => {
+    const logIn = (username, email, id, profilePic, noOfPosts,bio) => {
         setState({
             ...state, isAuthenticated: true,
             username: username,
             email: email,
             userId: id,
-            file:profilePic
+            file: profilePic,
+            noOfPosts: noOfPosts,
+            bio:bio
+
         })
     }
     return (

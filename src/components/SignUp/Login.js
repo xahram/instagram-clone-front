@@ -29,7 +29,7 @@ const Login = (props) => {
 
         axios.post('/login', authData).then((res) => {
             console.log(res);
-            logIn(res.data.username, res.data.email, res.data._id, res.data.avatar)
+            logIn(res.data.username, res.data.email, res.data._id, res.data.avatar,res.data.noOfPosts,res.data.bio)
             setLoading(false)
             // props.history.push('/')
 
