@@ -19,7 +19,7 @@ const UploadPosts = (props) => {
 
         axios.post(`/post/upload/${state.userId}`, formData)
             .then((res) => {
-                console.log(res)
+                console.log(res.data)
                 // updateProfilePicture(res.data)
             })
             .catch((err) => {

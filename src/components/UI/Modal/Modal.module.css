@@ -1,0 +1,24 @@
+.ModalSizing {
+    max-width: 70vw;
+    /* height:50vh; */
+    margin-top: 0px;
+  }
+.ModalBody {
+  display: flex;
+  /* width: 80%;
+     */
+ 
+  height: 70%;
+}
+
+.postSizing {
+  width: 70%;
+  height: 70%;
+}
+
+.postSizing > img {
+  max-width: 100%;
+  min-width: 90%;
+  max-height: 80%;
+  /* object-fit: contain; */
+}
