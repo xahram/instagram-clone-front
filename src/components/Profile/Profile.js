@@ -11,11 +11,14 @@ import ProfilePic from './ProfilePic/ProfilePic'
 import UploadPosts from './UploadPosts/UploadPosts'
 import Posts from '../../containers/Posts/Posts'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
+import DeleteUserModal from '../UI/Modal/Modal'
+import useToggleHook from '../../hooks/useTogglerState'
 import EditUser from './EditUser/EditUser'
 import { Route } from 'react-router-dom'
 const Profile = (props) => {
     const { state, deleteAndLogoutUser } = React.useContext(AuthContext);
     const { classes } = props;
+    const [showModal, setShowModal] = useToggleHook(false)
 
     const onDeleteHandler = (id) => {
         console.log(id)
@@ -48,10 +51,19 @@ const Profile = (props) => {
         </Paper>
         {/* <Route to='/edit-user' exact component={EditUser} /> */}
         <Button onClick={() => {
-            onDeleteHandler(state.userId)
+            setShowModal(true)
         }}
             variant='danger'>Delete Profile</Button>{' '}
         <Button onClick={onLogOutHandler} variant='warning'>Logout</Button>
+        <DeleteUserModal show={showModal}
+            simple={true}
+            onHide={() => { setShowModal(false) }}
+            heading='Delete Profile'
+            deleteUser={() => {
+                onDeleteHandler(state.userId)
+            }}>
+            Are you sure to delete your profile
+        </DeleteUserModal>
         <UploadPosts />
         <Posts />
     </React.Fragment>

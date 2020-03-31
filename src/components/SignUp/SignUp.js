@@ -33,6 +33,7 @@ const SignUp = (props) => {
             if (res.status === 201) {
                 toggleLoading(false);
                 logIn(res.data.username,res.data.email,res.data._id)
+                props.history.push('/')
             }
 
         }).catch((err) => {

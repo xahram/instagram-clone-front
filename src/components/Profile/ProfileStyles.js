@@ -4,7 +4,8 @@ const styles = (theme) => {
             width:"70%",
             margin:"auto",
             marginTop:"125px",
-            marginBottom:'5.1rem',
+            marginBottom:'2.1rem',
+            paddingBottom:'3.1rem',
             display:'flex',
             
         }
