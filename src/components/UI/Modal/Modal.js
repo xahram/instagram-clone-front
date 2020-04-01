@@ -40,7 +40,7 @@ const BootstrapModal = (props) => {
                     </div>
                     <div>
                         <div>Comments and like</div>
-                        <div>Comments and like</div>
+                        
                     </div>
 
                 </Modal.Body>
