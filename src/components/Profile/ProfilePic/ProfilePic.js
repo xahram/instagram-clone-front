@@ -5,7 +5,7 @@ import axios from 'axios'
 import { AuthContext } from '../../../hooks/contexts/AuthContext'
 import localClasses from './ProfilePic.module.css'
 import withStyles from '@material-ui/core/styles/withStyles'
-
+import * as profileTypes from '../../../hooks/componentTypes'
 const styles = (theme) => {
     return {
         Picture: {
@@ -43,22 +43,29 @@ const ProfilePic = (props) => {
         // fileInput.dispatchEvent('click');
     }
     //use flex display column and then justify content and hide visibilty of input
-    return (<div className={localClasses.ProfilePic}>
-        <Avatar className={classes.Picture} src={`data:image/jpg;base64,${state.file}`}>
-            {/* <Person /> */}
-        </Avatar>
-        <Typography variant='h6'>
-            <a onClick={anchorOnClickHandler} href='javascript:void(0);'>Upload Picture
-            <form id='profilePicForm' onSubmit={submitHandler} enctype="multipart/form-data">
-                    <input className={localClasses.profilePicInput} onChange={
-                        (e) => {
-                            submitHandler(e)
-                        }
-                    } name='avatar' type='file' />
+    const profilePic = props.type === profileTypes.USER_PROFILE ? (<>
+        <Avatar className={classes.Picture} src={`data:image/jpg;base64,${props.avatar}`}>
+        </Avatar ></>)
+        : (<>
+            <Avatar className={classes.Picture} src={`data:image/jpg;base64,${state.file}`}>
+                {/* <Person /> */}
+            </Avatar >
+            <Typography variant='h6'>
+                <a onClick={anchorOnClickHandler} href='javascript:void(0);'>Upload Picture
+        <form id='profilePicForm' onSubmit={submitHandler} enctype="multipart/form-data">
+                        <input className={localClasses.profilePicInput} onChange={
+                            (e) => {
+                                submitHandler(e)
+                            }
+                        } name='avatar' type='file' />
 
-                </form>
-            </a>
-        </Typography>
+                    </form>
+                </a>
+            </Typography>
+        </>
+        )
+    return (<div className={localClasses.ProfilePic}>
+        {profilePic}
     </div>
     )
 }
