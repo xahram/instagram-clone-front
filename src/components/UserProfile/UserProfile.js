@@ -24,6 +24,7 @@ export default class UserProfile extends React.Component {
                 console.log(err)
             })
     }
+    
     render() {
         return (<div>
             <UserProfilePic
