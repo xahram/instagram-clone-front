@@ -3,6 +3,7 @@ import axios from 'axios'
 import { AuthContext } from '../../hooks/contexts/AuthContext'
 import Post from './Post/Post'
 import classes from './Posts.module.css'
+import * as profileTypes from '../../hooks/componentTypes'
 class Posts extends React.Component {
     static contextType = AuthContext
     state = {
@@ -11,20 +12,25 @@ class Posts extends React.Component {
     }
     componentDidMount() {
         let value = this.context;
-        axios.get(`/posts/${value.state.userId}`)
-            .then((res) => {
-                if (res.status === 200) {
-                    console.log(res.data)
-                    this.setState({ posts: res.data })
-                }
-                else {
-                    this.setState({ errorMessage: 'unable to load your posts' })
-                }
+        if (this.props.type === profileTypes.USER_PROFILE) {
+            this.setState({ posts: this.props.posts })
+        } else {
+            axios.get(`/posts/${value.state.userId}`)
+                .then((res) => {
+                    if (res.status === 200) {
+                        console.log(res.data)
+                        this.setState({ posts: res.data })
+                    }
+                    else {
+                        this.setState({ errorMessage: 'unable to load your posts' })
+                    }
 
-            })
-            .catch((err) => {
-                this.setState({ errorMessage: `Check Your Internet Connection Or Try Later ${err}` })
-            })
+                })
+                .catch((err) => {
+                    this.setState({ errorMessage: `Check Your Internet Connection Or Try Later ${err}` })
+                })
+        }
+
     }
     render() {
 

@@ -7,7 +7,6 @@ import * as profileTypes from '../../hooks/componentTypes'
 export default class UserProfile extends React.Component {
     state = {
         username: '',
-        userId: '',
         userProfilePic: '',
         noOfPosts: '',
         bio: '',
@@ -16,15 +15,23 @@ export default class UserProfile extends React.Component {
     componentDidMount() {
         //here send the request to fill the above 
         // states and pass them down to below components
-        axios.get('/otherUser/id')
+        axios.get('/otherUserProfile/username')
             .then((res) => {
-                this.setState({ ...this.state, userId: res.data._id })
+                this.setState({
+                    ...this.state,
+                    userProfilePic: res.data.avatar,
+                    username: res.data.username,
+                    bio: res.data.bio,
+                    posts: res.data.posts,
+                    noOfPosts: res.data.noOfPosts,
+
+                })
             })
             .catch((err) => {
                 console.log(err)
             })
     }
-    
+
     render() {
         return (<div>
             <UserProfilePic
@@ -33,7 +40,7 @@ export default class UserProfile extends React.Component {
             <UserInfo
                 username={this.state.username}
                 bio={this.state.bio}
-                postCount={this.state.noOfPosts}
+                noOfPosts={this.state.noOfPosts}
                 type={profileTypes.USER_PROFILE} />
             <Posts
                 posts={this.state.posts}
