@@ -15,10 +15,16 @@ export default class UserProfile extends React.Component {
     componentDidMount() {
         //here send the request to fill the above 
         // states and pass them down to below components
-        axios.get('/otherUserProfile/username')
+        let username = ''
+        const query = new URLSearchParams(this.props.location.search)
+        for (let params of query.entries()) {
+            console.log(params)
+            username = params[1]
+        }
+        axios.get(`/otherUserProfile/${username}`)
             .then((res) => {
+               
                 this.setState({
-                    ...this.state,
                     userProfilePic: res.data.avatar,
                     username: res.data.username,
                     bio: res.data.bio,
@@ -33,6 +39,7 @@ export default class UserProfile extends React.Component {
     }
 
     render() {
+        console.log(this.state.posts)
         return (<div>
             <UserProfilePic
                 avatar={this.state.userProfilePic}

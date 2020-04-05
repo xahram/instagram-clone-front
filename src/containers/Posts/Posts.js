@@ -10,10 +10,21 @@ class Posts extends React.Component {
         posts: [],
         errorMessage: ''
     }
+    //shouldcomponentupdate use
+    // componentDidUpdate() {
+    //     if (this.props.type === profileTypes.USER_PROFILE) {
+    //         console.log(this.props.posts)
+    //         this.setState({ posts: this.props.posts })
+    //     }
+    // }
     componentDidMount() {
         let value = this.context;
         if (this.props.type === profileTypes.USER_PROFILE) {
-            this.setState({ posts: this.props.posts })
+            console.log(this.props.posts)
+            this.setState((prevState, props) => {
+                console.log(prevState, props)
+               
+            })
         } else {
             axios.get(`/posts/${value.state.userId}`)
                 .then((res) => {
