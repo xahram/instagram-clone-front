@@ -1,9 +1,10 @@
 import React from 'react'
 import UserInfo from '../Profile/ProfileInfo/ProfileInfo'
 import UserProfilePic from '../Profile/ProfilePic/ProfilePic'
-import Posts from '../../containers/Posts/Posts'
+import UserPosts from './UserPosts/UserPosts'
 import axios from 'axios'
 import * as profileTypes from '../../hooks/componentTypes'
+import classes from './UserProfile.module.css'
 export default class UserProfile extends React.Component {
     state = {
         username: '',
@@ -18,12 +19,12 @@ export default class UserProfile extends React.Component {
         let username = ''
         const query = new URLSearchParams(this.props.location.search)
         for (let params of query.entries()) {
-            console.log(params)
+            // console.log(params)
             username = params[1]
         }
         axios.get(`/otherUserProfile/${username}`)
             .then((res) => {
-               
+
                 this.setState({
                     userProfilePic: res.data.avatar,
                     username: res.data.username,
@@ -39,8 +40,8 @@ export default class UserProfile extends React.Component {
     }
 
     render() {
-        console.log(this.state.posts)
-        return (<div>
+        // console.log(this.state.posts)
+        return (<><div className={classes.UserProfile}>
             <UserProfilePic
                 avatar={this.state.userProfilePic}
                 type={profileTypes.USER_PROFILE} />
@@ -49,9 +50,11 @@ export default class UserProfile extends React.Component {
                 bio={this.state.bio}
                 noOfPosts={this.state.noOfPosts}
                 type={profileTypes.USER_PROFILE} />
-            <Posts
+
+        </div>
+            <UserPosts
+
                 posts={this.state.posts}
-                type={profileTypes.USER_PROFILE} />
-        </div>)
+                type={profileTypes.USER_PROFILE} /></>)
     }
 }

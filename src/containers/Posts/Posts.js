@@ -11,19 +11,37 @@ class Posts extends React.Component {
         errorMessage: ''
     }
     //shouldcomponentupdate use
-    // componentDidUpdate() {
+    // shouldComponentUpdate(nextProps, nextState) {
+    //Method 1 Try this might work
+    // if (this.props.type === profileTypes.USER_PROFILE) {
+    //nextProps.posts.length !== nextState.posts.length
+    //? this.setState({ posts: nextProps.posts })
+    //: null
+    //       return nextProps.posts !== this.props.posts
+    //}
+    //return true
+
+    //Method 2 Below didn't work
     //     if (this.props.type === profileTypes.USER_PROFILE) {
-    //         console.log(this.props.posts)
-    //         this.setState({ posts: this.props.posts })
+    //         console.log(nextProps.posts)
+
+    //         return nextProps.posts.length !== nextState.posts.length
+    // this.setState((prevState, props) => {
+    //     if (nextProps.posts.length !== this.state.posts.length) {
+    //         return {
+    //             posts: props.posts
+    //         }
+    //     }
+    // })
     //     }
     // }
     componentDidMount() {
         let value = this.context;
         if (this.props.type === profileTypes.USER_PROFILE) {
-            console.log(this.props.posts)
+            console.log(this.props)
             this.setState((prevState, props) => {
-                console.log(prevState, props)
-               
+                console.log(prevState, props.posts)
+
             })
         } else {
             axios.get(`/posts/${value.state.userId}`)

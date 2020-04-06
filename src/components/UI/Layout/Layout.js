@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import SignUp from '../../../components/SignUp/SignUp';
 import Login from '../../../components/SignUp/Login';
 import { AuthContext } from '../../../hooks/contexts/AuthContext'
-import { Route, Switch, Link } from 'react-router-dom'
+import { Route, Switch, Link, Redirect } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 const Layout = (props) => {
     const { state } = useContext(AuthContext)
@@ -25,6 +25,7 @@ const Layout = (props) => {
             <Switch>
                 <Route path="/sign-up" exact component={SignUp} />
                 <Route exact path="/" component={Login} />
+                <Redirect to='/' />
             </Switch>
         </React.Fragment>
 

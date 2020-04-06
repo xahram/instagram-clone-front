@@ -9,8 +9,10 @@ const Username = (props) => {
     return (
         <div className={classes.Username}>
             <span><strong>{props.username ? props.username : 'Username'}</strong></span>
-            <Button onClick={onClickHandler} variant='outline-info'>Edit Profile</Button>
-            {props.type === profileType.USER_PROFILE ? <Button  variant='primary'>Follow</Button> : null}
+
+            {props.type === profileType.USER_PROFILE ?
+                <Button variant='primary'>Follow</Button>
+                : <Button onClick={onClickHandler} variant='outline-info'>Edit Profile</Button>}
         </div>
     )
 }
